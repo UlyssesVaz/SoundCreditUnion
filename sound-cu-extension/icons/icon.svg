@@ -1,0 +1,7 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="24" fill="#0066cc"/>
+  <g fill="white">
+    <!-- Dollar sign -->
+    <path d="M64 20 L64 108 M50 35 Q50 28 58 28 L70 28 Q78 28 78 35 Q78 42 70 42 L58 50 Q50 50 50 57 Q50 64 58 64 L70 64 Q78 64 78 71 Q78 78 70 78 L58 78 Q50 78 50 85" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

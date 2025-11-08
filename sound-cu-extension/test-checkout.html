@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Checkout Page - Sound CU Extension Testing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .test-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+
+        .checkout-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .summary-row.total {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid #ddd;
+            color: #0066cc;
+        }
+
+        .btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #0052a3;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #0066cc;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .info-box li {
+            margin-bottom: 5px;
+        }
+
+        .test-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .test-controls button {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .test-controls button:hover {
+            background: #f8f9fa;
+        }
+
+        .test-controls button.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Sound CU Extension Test Page</h1>
+            <p>This page simulates a checkout flow to test the extension's detection and benefit overlay features.</p>
+        </div>
+
+        <div class="info-box">
+            <strong>What to test:</strong>
+            <ul>
+                <li>Extension should automatically detect this as a checkout page</li>
+                <li>Try different purchase amounts to trigger different benefits</li>
+                <li>Create goals in the extension and see how purchases affect them</li>
+                <li>Check browser console for extension logs</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>Test Checkout Form</h2>
+
+            <div class="form-group">
+                <label for="item-name">Item Name</label>
+                <input type="text" id="item-name" value="Sample Product" placeholder="Enter product name">
+            </div>
+
+            <div class="form-group">
+                <label for="item-price">Item Price ($)</label>
+                <input type="number" id="item-price" value="1250.00" step="0.01" placeholder="0.00">
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" value="1" min="1">
+            </div>
+
+            <div class="test-controls">
+                <button onclick="setAmount(500)">$500 Test</button>
+                <button onclick="setAmount(1000)">$1,000 Test</button>
+                <button onclick="setAmount(2500)">$2,500 Test</button>
+            </div>
+
+            <div class="checkout-summary" id="summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$1,250.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax:</span>
+                    <span id="tax">$112.50</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="shipping">$9.99</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">$1,372.49</span>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: #333;">Payment Information</h3>
+
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" name="cc-number" placeholder="1234 5678 9012 3456" maxlength="19">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="form-group">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" name="cc-exp" placeholder="MM/YY" maxlength="5">
+                </div>
+
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cc-csc" placeholder="123" maxlength="4">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="billing-name">Name on Card</label>
+                <input type="text" id="billing-name" placeholder="John Doe">
+            </div>
+
+            <button class="btn" onclick="handleCheckout()">Complete Purchase</button>
+        </div>
+
+        <div class="test-section">
+            <h2>Extension Testing Tips</h2>
+            <ul style="line-height: 2; color: #555;">
+                <li><strong>Open DevTools Console:</strong> Right-click → Inspect → Console tab</li>
+                <li><strong>Check for Detection:</strong> Look for "Sound CU: Checkout page detected"</li>
+                <li><strong>Test Different Amounts:</strong> Use the quick test buttons above</li>
+                <li><strong>Create Goals:</strong> Click the extension icon to add financial goals</li>
+                <li><strong>Watch for Overlays:</strong> Benefit suggestions should appear automatically</li>
+                <li><strong>Test Goal Impact:</strong> If you have goals set, you'll see impact notifications</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Update calculations when inputs change
+        document.getElementById('item-price').addEventListener('input', updateSummary);
+        document.getElementById('quantity').addEventListener('input', updateSummary);
+
+        function updateSummary() {
+            const price = parseFloat(document.getElementById('item-price').value) || 0;
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            
+            const subtotal = price * quantity;
+            const tax = subtotal * 0.09; // 9% tax
+            const shipping = 9.99;
+            const total = subtotal + tax + shipping;
+
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        function setAmount(amount) {
+            document.getElementById('item-price').value = amount.toFixed(2);
+            updateSummary();
+        }
+
+        function handleCheckout() {
+            alert('This is a test page! In production, this would process the payment.\n\nDid you see the extension overlays?');
+        }
+
+        // Log page info for extension
+        console.log('Sound CU Test Page Loaded');
+        console.log('Page Type: Checkout/Payment');
+        console.log('Expected Detection: YES');
+        
+        // Initial calculation
+        updateSummary();
+    </script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+/* content.css - Minimal Overlay Styles for Sound CU Extension */
+
+/* Base overlay - minimal approach */
+.soundcu-overlay-minimal {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999999;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.soundcu-overlay-minimal.soundcu-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card container */
+.soundcu-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 400px;
+  padding: 20px;
+  max-width: calc(100vw - 40px);
+}
+
+/* Header */
+.soundcu-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.soundcu-logo-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.soundcu-brand {
+  font-size: 12px;
+  color: #1a1a1a;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.soundcu-brand-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+}
+
+.soundcu-header-icons {
+  display: flex;
+  gap: 4px;
+}
+
+.soundcu-icon-btn {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  font-size: 16px;
+  padding: 0;
+}
+
+.soundcu-icon-btn:hover {
+  background: #f5f5f5;
+}
+
+/* Alert boxes */
+.soundcu-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.soundcu-alert {
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.soundcu-alert-green {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.soundcu-alert-yellow {
+  background: #fff8e1;
+  color: #f57c00;
+}
+
+.soundcu-alert-text {
+  display: block;
+}
+
+.soundcu-alert strong {
+  font-weight: 600;
+}
+
+/* Action buttons */
+.soundcu-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.soundcu-btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-align: center;
+}
+
+.soundcu-btn-secondary {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.soundcu-btn-secondary:hover {
+  background: #bbdefb;
+}
+
+/* Goal Impact Notification - keep minimal style */
+.soundcu-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999998;
+  max-width: 400px;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.soundcu-notification.soundcu-show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.soundcu-notification-content {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.soundcu-notification-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.soundcu-notification-icon {
+  font-size: 18px;
+}
+
+.soundcu-notification-header strong {
+  flex: 1;
+  font-size: 14px;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.soundcu-notification-close {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border-radius: 4px;
+}
+
+.soundcu-notification-close:hover {
+  background: #f5f5f5;
+}
+
+.soundcu-notification-content p {
+  margin: 0 0 12px 0;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.soundcu-notification-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.soundcu-btn-primary {
+  background: #1565c0;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex: 1;
+}
+
+.soundcu-btn-primary:hover {
+  background: #0d47a1;
+}
+
+.soundcu-btn-tertiary {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.soundcu-btn-tertiary:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .soundcu-overlay-minimal {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .soundcu-card {
+    width: 100%;
+  }
+  
+  .soundcu-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .soundcu-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Accessibility */
+.soundcu-overlay-minimal *:focus,
+.soundcu-notification *:focus {
+  outline: 2px solid #1565c0;
+  outline-offset: 2px;
+}
+
+/* Smooth animations */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+

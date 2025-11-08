@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sound CU Financial Co-Pilot</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading your financial goals...</p>
+  </div>
+
+  <!-- Main Dashboard -->
+  <div id="dashboard" class="dashboard hidden">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <img src="icons/icon48.png" alt="Sound CU" class="logo">
+        <div class="header-text">
+          <h1>Financial Co-Pilot</h1>
+          <p class="subtitle">Your personalized savings assistant</p>
+        </div>
+      </div>
+      <button id="settings-btn" class="icon-btn" title="Settings">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M12 1v6m0 6v6m5.196-15.196l-4.243 4.243m0 5.657l-4.243 4.243m15.196-5.196l-6 0m-6 0l-6 0m15.196 5.196l-4.243-4.243m-5.657 0l-4.243-4.243"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Quick Stats -->
+    <section class="quick-stats" id="quick-stats">
+      <div class="stat-card">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-content">
+          <div class="stat-label">Active Goals</div>
+          <div class="stat-value" id="active-goals-count">0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">💰</div>
+        <div class="stat-content">
+          <div class="stat-label">Total Savings</div>
+          <div class="stat-value" id="total-savings">$0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="goals-section">
+      <div class="section-header">
+        <h2>Your Financial Goals</h2>
+        <button id="add-goal-btn" class="btn-primary">+ Add Goal</button>
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">🎯</div>
+        <h3>No Goals Yet</h3>
+        <p>Start by creating your first financial goal. We'll help you track progress and make smarter spending decisions.</p>
+        <button id="create-first-goal-btn" class="btn-primary">Create Your First Goal</button>
+      </div>
+
+      <!-- Goals List -->
+      <div id="goals-list" class="goals-list hidden">
+        <!-- Goals will be dynamically inserted here -->
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="activity-section" id="activity-section">
+      <h2>Recent Activity</h2>
+      <div id="activity-list" class="activity-list">
+        <p class="activity-empty">No recent activity</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Goal Creation Modal -->
+  <div id="goal-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">Create New Goal</h2>
+        <button class="modal-close" id="close-modal">&times;</button>
+      </div>
+      
+      <form id="goal-form">
+        <div class="form-group">
+          <label for="goal-name">Goal Name</label>
+          <input type="text" id="goal-name" placeholder="e.g., Emergency Fund" required>
+        </div>
+
+        <div class="form-group">
+          <label for="goal-type">Goal Type</label>
+          <select id="goal-type" required>
+            <option value="">Select a type</option>
+            <option value="savings">Savings Goal</option>
+            <option value="spending_limit">Spending Limit</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="target-amount-group">
+          <label for="target-amount">Target Amount</label>
+          <div class="input-with-icon">
+            <span class="input-icon">$</span>
+            <input type="number" id="target-amount" placeholder="1000" min="0" step="0.01" required>
+          </div>
+        </div>
+
+        <div class="form-group hidden" id="current-amount-group">
+          <label for="current-amount">Current Amount (Optional)</label>
+          <div class="input-with-icon">
+            <span class="input-icon">$</span>
+            <input type="number" id="current-amount" placeholder="0" min="0" step="0.01">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="goal-deadline">Target Date (Optional)</label>
+          <input type="date" id="goal-deadline">
+        </div>
+
+        <div class="form-group">
+          <label for="goal-notes">Notes (Optional)</label>
+          <textarea id="goal-notes" rows="3" placeholder="Add any notes about this goal..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="cancel-goal-btn">Cancel</button>
+          <button type="submit" class="btn-primary">Save Goal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button class="modal-close" id="close-settings">&times;</button>
+      </div>
+      
+      <div class="settings-content">
+        <div class="setting-item">
+          <div class="setting-info">
+            <strong>Checkout Prompts</strong>
+            <p>Show benefit suggestions when shopping online</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="toggle-checkout-prompts" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <strong>Goal Impact Notifications</strong>
+            <p>Alert me when purchases affect my goals</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="toggle-goal-tracking" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <strong>Browser Notifications</strong>
+            <p>Receive desktop notifications for savings opportunities</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="toggle-notifications" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <hr>
+
+        <div class="setting-item">
+          <button class="btn-secondary full-width" id="export-data-btn">Export My Data</button>
+        </div>
+
+        <div class="setting-item">
+          <button class="btn-danger full-width" id="reset-btn">Reset All Data</button>
+        </div>
+
+        <div class="app-info">
+          <p>Sound CU Financial Co-Pilot v1.0.0</p>
+          <p><a href="https://soundcu.org/privacy" target="_blank">Privacy Policy</a> | <a href="https://soundcu.org/support" target="_blank">Support</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
