@@ -3,6 +3,7 @@ SoundCreditUnion
 A web + backend application built to serve credit-union style goals, AI-driven recommendations, and product catalog functionalities.
 
 Project Structure
+
 .
 ├── soundcu-backend/              # Complete backend application
 │   ├── app/                      # Application code
@@ -38,6 +39,7 @@ Project Structure
 ├── PROJECT_SUMMARY.md           # Complete architecture overview
 ├── QUICK_REFERENCE.md           # Command cheat sheet
 └── SETUP_CHECKLIST.md           # Environment setup checklist
+
 
 Features
 
