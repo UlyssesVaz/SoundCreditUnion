@@ -1,0 +1,5 @@
+/* Sound CU Co-Pilot Content Styles */
+.sound-cu-overlay {
+    position: fixed;
+    z-index: 99999;
+}
