@@ -2,6 +2,44 @@ SoundCreditUnion
 
 A web + backend application built to serve credit-union style goals, AI-driven recommendations, and product catalog functionalities.
 
+<pre>
+.
+├── soundcu-backend/              # Complete backend application
+│   ├── app/                      # Application code
+│   │   ├── routers/              # API endpoints
+│   │   │   ├── auth.py           # Authentication (login, register, refresh)
+│   │   │   ├── users.py          # User profile management
+│   │   │   ├── goals.py          # Goals CRUD + impact analysis
+│   │   │   ├── recommendations.py # AI recommendations
+│   │   │   └── products.py       # Product catalog
+│   │   ├── auth.py               # JWT token functions
+│   │   ├── config.py             # Configuration settings
+│   │   ├── database.py           # Database connection
+│   │   ├── dependencies.py       # FastAPI dependencies
+│   │   ├── models.py             # SQLAlchemy database models
+│   │   └── schemas.py            # Pydantic request/response schemas
+│   │
+│   ├── scripts/
+│   │   └── init_db.py            # Database initialization + seed data
+│   │
+│   ├── main.py                   # FastAPI application entry point
+│   ├── requirements.txt          # Python dependencies
+│   ├── Dockerfile                # Container definition
+│   ├── docker-compose.yml        # Service orchestration (PostgreSQL + Backend)
+│   ├── .env.example              # Environment variables template
+│   ├── .gitignore                # Git ignore rules
+│   ├── Makefile                  # Easy commands (make start, make test, etc.)
+│   ├── setup.sh                  # Automated setup script
+│   ├── test_api.sh               # API testing script
+│   └── README.md                 # Project documentation
+│
+├── GETTING_STARTED.md            # Step-by-step setup guide
+├── FRONTEND_INTEGRATION.md       # Extension integration guide
+├── PROJECT_SUMMARY.md            # Complete architecture overview
+├── QUICK_REFERENCE.md            # Command cheat sheet
+└── SETUP_CHECKLIST.md            # Environment setup checklist
+</pre>
+
 Features
 
 User authentication and management (login, registration, JWT refresh)
