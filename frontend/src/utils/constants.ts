@@ -1,6 +1,13 @@
-export const API_BASE_URL = import.meta.env.PROD
-  ? 'https://api.soundcu-copilot.com/v1'
-  : 'http://localhost:8000/v1';
+// src/utils/constants.ts
+
+// This constant will be replaced at build time by Vite.
+// In development mode (npm run dev), import.meta.env.PROD is false.
+// In production mode, import.meta.env.PROD is true.
+
+export const API_BASE_URL = 'http://localhost:8000/v1';
+// export const API_BASE_URL = import.meta.env.PROD
+//   ? 'https://api.soundcu-copilot.com/v1'
+//   : import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/v1'; // Use the VITE_API_BASE_URL from .env.development
 
 export const CHECKOUT_PATTERNS = {
   selectors: [

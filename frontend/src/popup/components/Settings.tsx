@@ -50,7 +50,7 @@ const Settings: React.FC<SettingsProps> = ({ user }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   // Sync local form state if the user prop changes (e.g., after a save)
   useEffect(() => {
